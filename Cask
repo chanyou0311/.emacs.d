@@ -28,4 +28,8 @@
 (depends-on "yasnippet")
 
 (depends-on "auto-complete")
+
 (depends-on "python-mode")
+(depends-on "jedi")
+(depends-on "virtualenvwrapper")
+(depends-on "auto-virtualenvwrapper")
