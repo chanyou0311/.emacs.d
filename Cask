@@ -28,6 +28,7 @@
 (depends-on "yasnippet")
 
 (depends-on "auto-complete")
+(depends-on "neotree")
 
 (depends-on "python-mode")
 (depends-on "jedi")

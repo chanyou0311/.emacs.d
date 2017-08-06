@@ -70,3 +70,7 @@
 (require 'virtualenvwrapper)
 (require 'auto-virtualenvwrapper)
 (add-hook 'python-mode-hook)
+
+;; neotree
+(require 'neotree)
+(global-set-key [f8] 'neotree-toggle)
