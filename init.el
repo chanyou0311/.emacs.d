@@ -19,6 +19,11 @@
 ;; (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
 ;; (package-initialize)
 
+;; neotree
+(require 'neotree)
+(global-set-key [f8] 'neotree-toggle)
+;; neotree ウィンドウを表示する毎に current file のあるディレクトリを表示する
+(setq neo-smart-open t)
 
 ;;
 ;; Auto Complete
@@ -36,29 +41,17 @@
 (setq ac-use-fuzzy t)          ;; 曖昧マッチ
 
 
-;; pyhton-mode
+;; python-mode
 (autoload 'python-mode "python-mode" "Python editing mode." t)
 (custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (yasnippet web-mode use-package smex smartparens python-mode projectile prodigy popwin pallet nyan-mode multiple-cursors magit idle-highlight-mode htmlize flycheck-cask expand-region exec-path-from-shell drag-stuff auto-complete)))
- '(py-indent-offset 4))
+  '(py-indent-offset 4)
+)
 (add-hook 'python-mode-hook
   '(lambda()
     (setq tab-width 4) 
     (setq indent-tabs-mode nil)
   )
 )
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
 
 ;; jedi
 (require 'jedi)
@@ -71,6 +64,4 @@
 (require 'auto-virtualenvwrapper)
 (add-hook 'python-mode-hook)
 
-;; neotree
-(require 'neotree)
-(global-set-key [f8] 'neotree-toggle)
+
