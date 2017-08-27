@@ -13,6 +13,11 @@
   (setq ns-command-modifier (quote meta)))
 (load-theme 'tango-dark' t)
 
+;; emmet-mode
+(require 'emmet-mode)
+(add-hook 'web-mode-hook 'emmet-mode)
+(setq emmet-move-cursor-between-quotes t)
+
 ;; neotree
 (require 'neotree)
 (global-set-key [f8] 'neotree-toggle)
@@ -50,7 +55,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (package-utils yasnippet web-mode-edit-element use-package smex smartparens python-mode projectile prodigy popwin pallet nyan-mode neotree multiple-cursors magit jedi idle-highlight-mode htmlize flycheck-cask expand-region exec-path-from-shell drag-stuff auto-virtualenvwrapper)))
+    (emmet-mode package-utils yasnippet web-mode-edit-element use-package smex smartparens python-mode projectile prodigy popwin pallet nyan-mode neotree multiple-cursors magit jedi idle-highlight-mode htmlize flycheck-cask expand-region exec-path-from-shell drag-stuff auto-virtualenvwrapper)))
  '(py-indent-offset 4))
 (add-hook 'python-mode-hook
 	  '(lambda()

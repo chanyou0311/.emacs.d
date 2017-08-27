@@ -13,6 +13,7 @@
 (depends-on "deferred")
 (depends-on "diminish")
 (depends-on "drag-stuff")
+(depends-on "emmet-mode")
 (depends-on "epc")
 (depends-on "epl")
 (depends-on "exec-path-from-shell")
