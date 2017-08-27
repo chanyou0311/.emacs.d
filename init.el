@@ -1,3 +1,10 @@
+
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+(package-initialize)
+
 (require 'cask)
 (cask-initialize)
 
@@ -13,11 +20,12 @@
 (setq neo-smart-open t)
 
 
-;;行番号の表示
+;; 行番号の表示
 (global-linum-mode t)
 (setq linum-format "%4d:")
 
-
+;; 更新のあったファイルの自動再読み込み
+(global-auto-revert-mode 1)
 
 ;; Auto Complete
 (require 'auto-complete)
