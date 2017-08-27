@@ -10,7 +10,7 @@
 
 (keyboard-translate ?\C-h ?\C-?)
 (when (eq system-type 'darwin)
-    (setq ns-command-modifier (quote meta)))
+  (setq ns-command-modifier (quote meta)))
 (load-theme 'tango-dark' t)
 
 ;; neotree
@@ -44,14 +44,20 @@
 ;; python-mode
 (autoload 'python-mode "python-mode" "Python editing mode." t)
 (custom-set-variables
-  '(py-indent-offset 4)
-)
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (package-utils yasnippet web-mode-edit-element use-package smex smartparens python-mode projectile prodigy popwin pallet nyan-mode neotree multiple-cursors magit jedi idle-highlight-mode htmlize flycheck-cask expand-region exec-path-from-shell drag-stuff auto-virtualenvwrapper)))
+ '(py-indent-offset 4))
 (add-hook 'python-mode-hook
-  '(lambda()
-    (setq tab-width 4) 
-    (setq indent-tabs-mode nil)
-  )
-)
+	  '(lambda()
+	     (setq tab-width 4) 
+	     (setq indent-tabs-mode nil)
+	     )
+	  )
 
 ;;jedi
 (require 'jedi)
@@ -84,4 +90,14 @@
   (setq web-mode-java-offset   2)
   (setq web-mode-asp-offset    2))
 (add-hook 'web-mode-hook 'web-mode-hook)
+
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+
+;; pallet
+(require 'pallet)
 
