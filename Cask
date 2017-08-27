@@ -35,4 +35,3 @@
 (depends-on "virtualenvwrapper")
 (depends-on "auto-virtualenvwrapper")
 
-(depends-on "web-mode")
