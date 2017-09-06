@@ -5,7 +5,10 @@
 ;; You may delete these explanatory comments.
 (package-initialize)
 
-(require 'cask)
+(when (equal system-type 'darwin)
+  (require 'cask))
+(when (equal system-type 'gnu/linux)
+  (require 'cask "~/.cask/cask.el"))
 (cask-initialize)
 
 (keyboard-translate ?\C-h ?\C-?)
