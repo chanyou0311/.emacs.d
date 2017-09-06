@@ -47,22 +47,25 @@
 
 
 ;; python-mode
-(autoload 'python-mode "python-mode" "Python editing mode." t)
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (emmet-mode package-utils yasnippet web-mode-edit-element use-package smex smartparens python-mode projectile prodigy popwin pallet nyan-mode neotree multiple-cursors magit jedi idle-highlight-mode htmlize flycheck-cask expand-region exec-path-from-shell drag-stuff auto-virtualenvwrapper)))
- '(py-indent-offset 4))
-(add-hook 'python-mode-hook
-	  '(lambda()
-	     (setq tab-width 4) 
-	     (setq indent-tabs-mode nil)
-	     )
-	  )
+(require 'python-mode)
+(setq auto-mode-alist (cons '("\\.py\\'" . python-mode) auto-mode-alist))
+
+;; (autoload 'python-mode "python-mode" "Python editing mode." t)
+;; (custom-set-variables
+;;  ;; custom-set-variables was added by Custom.
+;;  ;; If you edit it by hand, you could mess it up, so be careful.
+;;  ;; Your init file should contain only one such instance.
+;;  ;; If there is more than one, they won't work right.
+;;  '(package-selected-packages
+;;    (quote
+;;     (jedi-direx emmet-mode package-utils yasnippet web-mode-edit-element use-package smex smartparens python-mode projectile prodigy popwin pallet nyan-mode neotree multiple-cursors magit jedi idle-highlight-mode htmlize flycheck-cask expand-region exec-path-from-shell drag-stuff auto-virtualenvwrapper)))
+;;  '(py-indent-offset 4))
+;; (add-hook 'python-mode-hook
+;; 	  '(lambda()
+;; 	     (setq tab-width 4) 
+;; 	     (setq indent-tabs-mode nil)
+;; 	     )
+;; 	  )
 
 ;;jedi
 (require 'jedi)
@@ -142,23 +145,19 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(web-mode-comment-face ((t (:foreground "#D30628")))) ;コメント
- '(web-mode-css-at-rule-face ((t (:foreground "#FF7F00")))) ;CSSタグ
- '(web-mode-css-pseudo-class-face ((t (:foreground "#FF7F00")))) ;CSS擬似クラス
- '(web-mode-css-rule-face ((t (:foreground "#A0D8EF")))) ;CSSタグ
- '(web-mode-doctype-face ((t (:foreground "#82AE46")))) ;docutype
- '(web-mode-html-attr-name-face ((t (:foreground "#C97586")))) ;属性名など
- '(web-mode-html-attr-value-face ((t (:foreground "#82AE46")))) ;属性値
- '(web-mode-html-tag-face ((t (:foreground "##4682ae" :weight bold)))) ;要素名
- '(web-mode-server-comment-face ((t (:foreground "#D9333F"))))) ;コメント
+ '(web-mode-comment-face ((t (:foreground "#D30628"))))
+ '(web-mode-css-at-rule-face ((t (:foreground "#FF7F00"))))
+ '(web-mode-css-pseudo-class-face ((t (:foreground "#FF7F00"))))
+ '(web-mode-css-rule-face ((t (:foreground "#A0D8EF"))))
+ '(web-mode-doctype-face ((t (:foreground "#82AE46"))))
+ '(web-mode-html-attr-name-face ((t (:foreground "#C97586"))))
+ '(web-mode-html-attr-value-face ((t (:foreground "#82AE46"))))
+ '(web-mode-html-tag-face ((t (:foreground "##4682ae" :weight bold))))
+ '(web-mode-server-comment-face ((t (:foreground "#D9333F")))))
+ ;コメント
 (add-hook 'web-mode-hook 'web-mode-hook)
 
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+
 
 ;; pallet
 (require 'pallet)
