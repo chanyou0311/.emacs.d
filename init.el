@@ -11,6 +11,7 @@
   (require 'cask "~/.cask/cask.el"))
 (cask-initialize)
 
+(define-key key-translation-map (kbd "C-h") (kbd "<DEL>"))
 (keyboard-translate ?\C-h ?\C-?)
 (when (eq system-type 'darwin)
   (setq ns-command-modifier (quote meta)))
