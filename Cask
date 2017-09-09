@@ -25,7 +25,6 @@
 (depends-on "htmlize")
 (depends-on "idle-highlight-mode")
 (depends-on "jedi")
-(depends-on "jedi-core")
 (depends-on "magit")
 (depends-on "magit-popup")
 (depends-on "multiple-cursors")
