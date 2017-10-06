@@ -16,7 +16,7 @@
 (keyboard-translate ?\C-h ?\C-?)
 (when (eq system-type 'darwin)
   (setq ns-command-modifier (quote meta)))
-(load-theme 'tango-dark' t)
+(load-theme 'wombat t)
 
 ;; emmet-mode
 (require 'emmet-mode)
