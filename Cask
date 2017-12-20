@@ -2,6 +2,7 @@
 (source melpa)
 (source melpa-stable)
 
+(depends-on "anything")
 (depends-on "async")
 (depends-on "auto-complete")
 (depends-on "auto-virtualenvwrapper")
