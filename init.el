@@ -29,6 +29,48 @@
 ;;; neotree ウィンドウを表示する毎に current file のあるディレクトリを表示する
 (setq neo-smart-open t)
 
+(progn
+  (require 'whitespace)
+  (setq whitespace-style
+        '(
+          face ; faceで可視化
+          trailing ; 行末
+          tabs ; タブ
+          spaces ; スペース
+          space-mark ; 表示のマッピング
+          tab-mark
+          ))
+  (setq whitespace-display-mappings
+        '(
+          (space-mark ?\u3000 [?\u2423])
+          (tab-mark ?\t [?\u00BB ?\t] [?\\ ?\t])
+          ))
+  (setq whitespace-trailing-regexp  "\\([ \u00A0]+\\)$")
+  (setq whitespace-space-regexp "\\(\u3000+\\)")
+  (set-face-attribute 'whitespace-trailing nil
+                      :foreground "RoyalBlue4"
+                      :background "RoyalBlue4"
+                      :underline nil)
+  (set-face-attribute 'whitespace-tab nil
+                      :foreground "yellow4"
+                      :background "yellow4"
+                      :underline nil)
+  (set-face-attribute 'whitespace-space nil
+                      :foreground "gray40"
+                      :background "gray20"
+                      :underline nil)
+  (global-whitespace-mode t)
+  )
+
+
+;; タブ幅をスペース2つ分にする
+(setq-default tab-width 2)
+
+;; 基本インデントの設定
+(setq-default c-basic-offset 2     ;;基本インデント量2
+              tab-width 2          ;;タブ幅2
+              indent-tabs-mode nil)  ;;インデントをタブでするかスペースでするか
+
 
 ;; 行番号の表示
 (global-linum-mode t)
@@ -55,22 +97,23 @@
 (require 'python-mode)
 (setq auto-mode-alist (cons '("\\.py\\'" . python-mode) auto-mode-alist))
 
-;; (autoload 'python-mode "python-mode" "Python editing mode." t)
-;; (custom-set-variables
-;;  ;; custom-set-variables was added by Custom.
-;;  ;; If you edit it by hand, you could mess it up, so be careful.
-;;  ;; Your init file should contain only one such instance.
-;;  ;; If there is more than one, they won't work right.
-;;  '(package-selected-packages
-;;    (quote
-;;     (jedi-direx emmet-mode package-utils yasnippet web-mode-edit-element use-package smex smartparens python-mode projectile prodigy popwin pallet nyan-mode neotree multiple-cursors magit jedi idle-highlight-mode htmlize flycheck-cask expand-region exec-path-from-shell drag-stuff auto-virtualenvwrapper)))
-;;  '(py-indent-offset 4))
-;; (add-hook 'python-mode-hook
-;; 	  '(lambda()
-;; 	     (setq tab-width 4) 
-;; 	     (setq indent-tabs-mode nil)
-;; 	     )
-;; 	  )
+(autoload 'python-mode "python-mode" "Python editing mode." t)
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (whitespace-cleanup-mode vue-mode anything rinari yasnippet web-mode-edit-element use-package smex smartparens python-mode projectile prodigy popwin pallet package-utils nyan-mode neotree multiple-cursors magit jedi-direx idle-highlight-mode htmlize flycheck-cask expand-region exec-path-from-shell emmet-mode drag-stuff auto-virtualenvwrapper)))
+ '(py-indent-offset 4))
+ (add-hook 'python-mode-hook
+           '(lambda()
+              (setq tab-width 4)
+              (setq indent-tabs-mode nil)
+              )
+           )
 
 ;;jedi
 (require 'epc)
@@ -85,6 +128,7 @@
 (require 'virtualenvwrapper)
 (require 'auto-virtualenvwrapper)
 (add-hook 'python-mode-hook 'auto-virtualenvwrapper-activate)
+
 
 
 ;; web-mode
@@ -161,23 +205,24 @@
  '(web-mode-html-attr-name-face ((t (:foreground "#C97586"))))
  '(web-mode-html-attr-value-face ((t (:foreground "#82AE46"))))
  '(web-mode-html-tag-face ((t (:foreground "##4682ae" :weight bold))))
- '(web-mode-server-comment-face ((t (:foreground "#D9333F")))))
+ '(web-mode-server-comment-face ((t (:foreground "#D9333F"))))
+ '(whitespace-trailing ((t (:background "red1" :foreground "yellow" :underline t :weight bold)))))
  ;コメント
 (add-hook 'web-mode-hook 'web-mode-hook)
+
+
+;; Javascriptインデント
+(add-hook 'js-mode-hook
+          (lambda ()
+            (make-local-variable 'js-indent-level)
+            (setq js-indent-level 2)))
 
 
 
 ;; pallet
 (require 'pallet)
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (anything rinari yasnippet web-mode-edit-element use-package smex smartparens python-mode projectile prodigy popwin pallet package-utils nyan-mode neotree multiple-cursors magit jedi-direx idle-highlight-mode htmlize flycheck-cask expand-region exec-path-from-shell emmet-mode drag-stuff auto-virtualenvwrapper))))
+
 
 ;; magit
 (global-set-key (kbd "C-x g") 'magit-status)
