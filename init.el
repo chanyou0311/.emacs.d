@@ -198,6 +198,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(mmm-default-submode-face ((t nil)))
  '(web-mode-comment-face ((t (:foreground "#D30628"))))
  '(web-mode-css-at-rule-face ((t (:foreground "#FF7F00"))))
  '(web-mode-css-pseudo-class-face ((t (:foreground "#FF7F00"))))
@@ -218,7 +219,13 @@
             (make-local-variable 'js-indent-level)
             (setq js-indent-level 2)))
 
-
+;; vue-mode
+(require 'vue-mode)
+(defun vue-mode/init-vue-mode ()
+  (use-package vue-mode
+    :config
+    ;; 0, 1, or 2, representing (respectively) none, low, and high coloring
+    (setq mmm-submode-decoration-level 1)))
 
 ;; pallet
 (require 'pallet)
