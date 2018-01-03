@@ -106,7 +106,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (whitespace-cleanup-mode vue-mode anything rinari yasnippet web-mode-edit-element use-package smex smartparens python-mode projectile prodigy popwin pallet package-utils nyan-mode neotree multiple-cursors magit jedi-direx idle-highlight-mode htmlize flycheck-cask expand-region exec-path-from-shell emmet-mode drag-stuff auto-virtualenvwrapper)))
+    (ensime scala-mode whitespace-cleanup-mode vue-mode anything rinari yasnippet web-mode-edit-element use-package smex smartparens python-mode projectile prodigy popwin pallet package-utils nyan-mode neotree multiple-cursors magit jedi-direx idle-highlight-mode htmlize flycheck-cask expand-region exec-path-from-shell emmet-mode drag-stuff auto-virtualenvwrapper)))
  '(py-indent-offset 4))
 
 (add-hook 'python-mode-hook
@@ -241,3 +241,6 @@
 ;; Rinari
 (add-to-list 'load-path "~/path/to/your/elisp/rinari")
 (require 'rinari)
+
+;; scala-mode
+(require 'scala-mode-auto)
