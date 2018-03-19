@@ -93,6 +93,9 @@
 (setq ac-use-fuzzy t)          ;; 曖昧マッチ
 
 
+;; Ruby
+(setq ruby-insert-encoding-magic-comment nil) ;; マジックコメント挿入無効化
+
 ;; python-mode
 (require 'python-mode)
 (setq auto-mode-alist (cons '("\\.py\\'" . python-mode) auto-mode-alist))
