@@ -145,6 +145,13 @@
 (add-to-list 'auto-mode-alist '("\\.erb$"       . web-mode))
 (add-to-list 'auto-mode-alist '("\\.html?$"     . web-mode))
 (add-to-list 'auto-mode-alist '("\\.css?$"      . web-mode))
+(add-to-list 'auto-mode-alist '("\\.js[x]?$"    . web-mode))
+(add-to-list 'auto-mode-alist '("\\.tsx?$"      . web-mode))
+
+;; 拡張子 .js でもJSX編集モードに
+(setq web-mode-content-types-alist
+  '(("jsx" . "\\.js[x]?\\'")))
+
 ;;; インデント数
 (defun web-mode-hook ()
   "Hooks for Web mode."
@@ -156,6 +163,38 @@
   (setq web-mode-asp-offset    2)
 )
 (add-hook 'web-mode-hook 'web-mode-hook)
+
+;; React用のインデント設定
+(add-hook 'web-mode-hook
+  '(lambda ()
+     (setq web-mode-attr-indent-offset nil)
+     (setq web-mode-markup-indent-offset 2)
+     (setq web-mode-css-indent-offset 2)
+     (setq web-mode-code-indent-offset 2)
+     (setq web-mode-sql-indent-offset 2)
+     (setq indent-tabs-mode nil)
+     (setq tab-width 2)
+     ))
+
+;; React用の色
+(custom-set-faces
+  '(web-mode-doctype-face           ((t (:foreground "#4A8ACA"))))
+  '(web-mode-html-tag-face          ((t (:foreground "#4A8ACA"))))
+  '(web-mode-html-tag-bracket-face  ((t (:foreground "#4A8ACA"))))
+  '(web-mode-html-attr-name-face    ((t (:foreground "#87CEEB"))))
+  '(web-mode-html-attr-equal-face   ((t (:foreground "#FFFFFF"))))
+  '(web-mode-html-attr-value-face   ((t (:foreground "#D78181"))))
+  '(web-mode-comment-face           ((t (:foreground "#587F35"))))
+  '(web-mode-server-comment-face    ((t (:foreground "#587F35"))))
+
+  '(web-mode-css-at-rule-face       ((t (:foreground "#DFCF44"))))
+  '(web-mode-comment-face           ((t (:foreground "#587F35"))))
+  '(web-mode-css-selector-face      ((t (:foreground "#DFCF44"))))
+  '(web-mode-css-pseudo-class       ((t (:foreground "#DFCF44"))))
+  '(web-mode-css-property-name-face ((t (:foreground "#87CEEB"))))
+  '(web-mode-css-string-face        ((t (:foreground "#D78181"))))
+  )
+
 
 (defun web-mode-hook ()
   "Hooks for Web mode."
@@ -249,3 +288,20 @@
 
 ;; scala-mode
 (require 'scala-mode-auto)
+
+;; prettier
+(require 'prettier-js)
+(add-hook 'web-mode-hook #'(lambda ()
+                             (enable-minor-mode
+                              '("\\.js[x]?\\'" . prettier-js-mode))))
+
+(add-hook 'web-mode-hook #'(lambda ()
+                             (enable-minor-mode
+                              '("\\.tsx?\\'" . prettier-js-mode))))
+
+
+(defun enable-minor-mode (my-pair)
+  "Enable minor mode if filename match the regexp.  MY-PAIR is a cons cell (regexp . minor-mode)."
+  (if (buffer-file-name)
+      (if (string-match (car my-pair) buffer-file-name)
+      (funcall (cdr my-pair)))))
