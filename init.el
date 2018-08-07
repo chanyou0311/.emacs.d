@@ -315,6 +315,10 @@
 
 (global-set-key (kbd "C-c C-p") 'my/prettier)
 
+(add-hook 'markdown-mode-hook
+  (lambda ()
+    (add-hook 'after-save-hook 'my/prettier t t)))
+
 ;; scala-mode
 ;; 動かん
 ;;(require 'scala-mode-auto)
