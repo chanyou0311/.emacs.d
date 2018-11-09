@@ -1,10 +1,10 @@
-
-
 ;; Added by Package.el.  This must come before configurations of
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
 ;; You may delete these explanatory comments.
 (package-initialize)
+
+(setq load-path (cons "~/.emacs.d/custom-lisp/" load-path))
 
 (when (equal system-type 'darwin)
   (require 'cask))
@@ -17,6 +17,7 @@
 (when (eq system-type 'darwin)
   (setq ns-command-modifier (quote meta)))
 (load-theme 'wombat t)
+(load-theme 'madhat2r t)
 
 ;; emmet-mode
 (require 'emmet-mode)
@@ -109,7 +110,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (ensime scala-mode whitespace-cleanup-mode vue-mode anything rinari yasnippet web-mode-edit-element use-package smex smartparens python-mode projectile prodigy popwin pallet package-utils nyan-mode neotree multiple-cursors magit jedi-direx idle-highlight-mode htmlize flycheck-cask expand-region exec-path-from-shell emmet-mode drag-stuff auto-virtualenvwrapper)))
+    (madhat2r-theme snazzy-theme base16-theme ensime scala-mode whitespace-cleanup-mode vue-mode anything rinari yasnippet web-mode-edit-element use-package smex smartparens python-mode projectile prodigy popwin pallet package-utils nyan-mode neotree multiple-cursors magit jedi-direx idle-highlight-mode htmlize flycheck-cask expand-region exec-path-from-shell emmet-mode drag-stuff auto-virtualenvwrapper)))
  '(py-indent-offset 4))
 
 (add-hook 'python-mode-hook
@@ -150,7 +151,7 @@
 
 ;; 拡張子 .js でもJSX編集モードに
 (setq web-mode-content-types-alist
-  '(("jsx" . "\\.js[x]?\\'")))
+      '(("jsx" . "\\.js[x]?\\'")))
 
 ;;; インデント数
 (defun web-mode-hook ()
@@ -161,39 +162,44 @@
   (setq web-mode-php-offset    2)
   (setq web-mode-java-offset   2)
   (setq web-mode-asp-offset    2)
-)
+  )
 (add-hook 'web-mode-hook 'web-mode-hook)
 
 ;; React用のインデント設定
 (add-hook 'web-mode-hook
-  '(lambda ()
-     (setq web-mode-attr-indent-offset nil)
-     (setq web-mode-markup-indent-offset 2)
-     (setq web-mode-css-indent-offset 2)
-     (setq web-mode-code-indent-offset 2)
-     (setq web-mode-sql-indent-offset 2)
-     (setq indent-tabs-mode nil)
-     (setq tab-width 2)
-     ))
+          '(lambda ()
+             (setq web-mode-attr-indent-offset nil)
+             (setq web-mode-markup-indent-offset 2)
+             (setq web-mode-css-indent-offset 2)
+             (setq web-mode-code-indent-offset 2)
+             (setq web-mode-sql-indent-offset 2)
+             (setq indent-tabs-mode nil)
+             (setq tab-width 2)
+             ))
 
-;; React用の色
-(custom-set-faces
-  '(web-mode-doctype-face           ((t (:foreground "#4A8ACA"))))
-  '(web-mode-html-tag-face          ((t (:foreground "#4A8ACA"))))
-  '(web-mode-html-tag-bracket-face  ((t (:foreground "#4A8ACA"))))
-  '(web-mode-html-attr-name-face    ((t (:foreground "#87CEEB"))))
-  '(web-mode-html-attr-equal-face   ((t (:foreground "#FFFFFF"))))
-  '(web-mode-html-attr-value-face   ((t (:foreground "#D78181"))))
-  '(web-mode-comment-face           ((t (:foreground "#587F35"))))
-  '(web-mode-server-comment-face    ((t (:foreground "#587F35"))))
-
-  '(web-mode-css-at-rule-face       ((t (:foreground "#DFCF44"))))
-  '(web-mode-comment-face           ((t (:foreground "#587F35"))))
-  '(web-mode-css-selector-face      ((t (:foreground "#DFCF44"))))
-  '(web-mode-css-pseudo-class       ((t (:foreground "#DFCF44"))))
-  '(web-mode-css-property-name-face ((t (:foreground "#87CEEB"))))
-  '(web-mode-css-string-face        ((t (:foreground "#D78181"))))
-  )
+;; ;; React用の色
+;; (custom-set-faces
+;;  ;; custom-set-faces was added by Custom.
+;;  ;; If you edit it by hand, you could mess it up, so be careful.
+;;  ;; Your init file should contain only one such instance.
+;;  ;; If there is more than one, they won't work right.
+;;  '(mmm-default-submode-face ((t nil)))
+;;  '(web-mode-comment-face ((t (:foreground "#587F35"))))
+;;  '(web-mode-css-at-rule-face ((t (:foreground "#DFCF44"))))
+;;  '(web-mode-css-property-name-face ((t (:foreground "#87CEEB"))))
+;;  '(web-mode-css-pseudo-class ((t (:foreground "#DFCF44"))))
+;;  '(web-mode-css-pseudo-class-face ((t (:foreground "#FF7F00"))))
+;;  '(web-mode-css-rule-face ((t (:foreground "#A0D8EF"))))
+;;  '(web-mode-css-selector-face ((t (:foreground "#DFCF44"))))
+;;  '(web-mode-css-string-face ((t (:foreground "#D78181"))))
+;;  '(web-mode-doctype-face ((t (:foreground "#4A8ACA"))))
+;;  '(web-mode-html-attr-equal-face ((t (:foreground "#FFFFFF"))))
+;;  '(web-mode-html-attr-name-face ((t (:foreground "#87CEEB"))))
+;;  '(web-mode-html-attr-value-face ((t (:foreground "#D78181"))))
+;;  '(web-mode-html-tag-bracket-face ((t (:foreground "#4A8ACA"))))
+;;  '(web-mode-html-tag-face ((t (:foreground "#4A8ACA"))))
+;;  '(web-mode-server-comment-face ((t (:foreground "#587F35"))))
+;;  '(whitespace-trailing ((t (:background "red1" :foreground "yellow" :underline t :weight bold)))))
 
 
 (defun web-mode-hook ()
@@ -237,23 +243,8 @@
 
 
 ;; 色の設定
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(mmm-default-submode-face ((t nil)))
- '(web-mode-comment-face ((t (:foreground "#D30628"))))
- '(web-mode-css-at-rule-face ((t (:foreground "#FF7F00"))))
- '(web-mode-css-pseudo-class-face ((t (:foreground "#FF7F00"))))
- '(web-mode-css-rule-face ((t (:foreground "#A0D8EF"))))
- '(web-mode-doctype-face ((t (:foreground "#82AE46"))))
- '(web-mode-html-attr-name-face ((t (:foreground "#C97586"))))
- '(web-mode-html-attr-value-face ((t (:foreground "#82AE46"))))
- '(web-mode-html-tag-face ((t (:foreground "##4682ae" :weight bold))))
- '(web-mode-server-comment-face ((t (:foreground "#D9333F"))))
- '(whitespace-trailing ((t (:background "red1" :foreground "yellow" :underline t :weight bold)))))
- ;コメント
+
+                                        ;コメント
 (add-hook 'web-mode-hook 'web-mode-hook)
 
 
@@ -293,7 +284,7 @@
   "Enable minor mode if filename match the regexp.  MY-PAIR is a cons cell (regexp . minor-mode)."
   (if (buffer-file-name)
       (if (string-match (car my-pair) buffer-file-name)
-      (funcall (cdr my-pair)))))
+          (funcall (cdr my-pair)))))
 
 (add-hook 'web-mode-hook #'(lambda ()
                              (enable-minor-mode
@@ -308,16 +299,16 @@
 (defun my/prettier ()
   (interactive)
   (shell-command
-    (format "%s --write %s"
-      (shell-quote-argument (executable-find "prettier"))
-      (shell-quote-argument (expand-file-name buffer-file-name))))
+   (format "%s --write %s"
+           (shell-quote-argument (executable-find "prettier"))
+           (shell-quote-argument (expand-file-name buffer-file-name))))
   (revert-buffer t t t))
 
 (global-set-key (kbd "C-c C-p") 'my/prettier)
 
 (add-hook 'markdown-mode-hook
-  (lambda ()
-    (add-hook 'after-save-hook 'my/prettier t t)))
+          (lambda ()
+            (add-hook 'after-save-hook 'my/prettier t t)))
 
 ;; scala-mode
 ;; 動かん
